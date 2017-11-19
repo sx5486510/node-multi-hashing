@@ -34,7 +34,7 @@ using namespace Nan;
 
 #define THROW_ERROR_EXCEPTION(x) Nan::ThrowError(x)
 
-NAN_METHOD(quark){
+void quark(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -56,7 +56,7 @@ NAN_METHOD(quark){
 	);
 }
 
-NAN_METHOD(x11){
+void x11(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -78,7 +78,7 @@ NAN_METHOD(x11){
 	);
 }
 
-NAN_METHOD(scrypt){
+void scrypt(const Nan::FunctionCallbackInfo<v8::Value>& info) {
    if (info.Length() < 3)
        return THROW_ERROR_EXCEPTION("You must provide buffer to hash, N value, and R value");
 
@@ -107,7 +107,7 @@ NAN_METHOD(scrypt){
 
 
 
-NAN_METHOD(scryptn){
+void scryptn(const Nan::FunctionCallbackInfo<v8::Value>& info) {
    if (info.Length() < 2)
        return THROW_ERROR_EXCEPTION("You must provide buffer to hash and N factor.");
 
@@ -136,7 +136,7 @@ NAN_METHOD(scryptn){
 	);
 }
 
-NAN_METHOD(scryptjane){
+void scryptjane(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 5)
         return THROW_ERROR_EXCEPTION("You must provide two argument: buffer, timestamp as number, and nChainStarTime as number, nMin, and nMax");
 
@@ -170,7 +170,7 @@ NAN_METHOD(scryptjane){
 	);
 }
 
-NAN_METHOD(keccak){
+void keccak(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -193,7 +193,7 @@ NAN_METHOD(keccak){
 }
 
 
-NAN_METHOD(bcrypt){
+void bcrypt(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -213,7 +213,7 @@ NAN_METHOD(bcrypt){
 	);
 }
 
-NAN_METHOD(skein){
+void skein(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -236,7 +236,7 @@ NAN_METHOD(skein){
 }
 
 
-NAN_METHOD(groestl){
+void groestl(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -259,7 +259,7 @@ NAN_METHOD(groestl){
 }
 
 
-NAN_METHOD(groestlmyriad){
+void groestlmyriad(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -282,7 +282,7 @@ NAN_METHOD(groestlmyriad){
 }
 
 
-NAN_METHOD(blake){
+void blake(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -330,7 +330,7 @@ Handle<Value> fugue(const Arguments& info) {
 }
 
 
-NAN_METHOD(qubit){
+void qubit(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -353,7 +353,7 @@ NAN_METHOD(qubit){
 }
 
 
-NAN_METHOD(hefty1){
+void hefty1(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -376,7 +376,7 @@ NAN_METHOD(hefty1){
 }
 
 
-NAN_METHOD(shavite3){
+void shavite3(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -398,7 +398,7 @@ NAN_METHOD(shavite3){
 	);
 }
 
-NAN_METHOD(cryptonight){
+void cryptonight(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     bool fast = false;
 
     if (info.Length() < 1)
@@ -431,7 +431,7 @@ NAN_METHOD(cryptonight){
 	);
 }
 
-NAN_METHOD(x13){
+void x13(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
@@ -453,7 +453,7 @@ NAN_METHOD(x13){
 		returnValue
 	);
 }
-NAN_METHOD(boolberry){
+void boolberry(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
     if (info.Length() < 2)
         return THROW_ERROR_EXCEPTION("You must provide two arguments.");
@@ -489,7 +489,7 @@ NAN_METHOD(boolberry){
 	);
 }
 
-NAN_METHOD(nist5){
+void nist5(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
@@ -512,7 +512,7 @@ NAN_METHOD(nist5){
 	);
 }
 
-NAN_METHOD(sha1) {
+void sha1(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     HandleScope scope;
 
     if (info.Length() < 1)
@@ -536,7 +536,7 @@ NAN_METHOD(sha1) {
 	);
 }
 
-NAN_METHOD(x15) {
+void x15(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
@@ -558,7 +558,7 @@ NAN_METHOD(x15) {
 	);
 }
 
-NAN_METHOD(fresh) {
+void fresh(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
