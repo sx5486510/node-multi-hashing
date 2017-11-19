@@ -30,6 +30,7 @@ extern "C" {
 
 using namespace node;
 using namespace v8;
+using namespace Nan;
 
 #define THROW_ERROR_EXCEPTION(x) Nan::ThrowError(x)
 
