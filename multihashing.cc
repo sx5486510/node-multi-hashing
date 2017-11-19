@@ -305,9 +305,7 @@ void blake(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 }
 
 
-Handle<Value> fugue(const Arguments& info) {
-    HandleScope scope;
-
+void fugue(const Nan::FunctionCallbackInfo<v8::Value>& info) {
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
 
