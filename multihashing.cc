@@ -511,7 +511,6 @@ void nist5(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 }
 
 void sha1(const Nan::FunctionCallbackInfo<v8::Value>& info) {
-    HandleScope scope;
 
     if (info.Length() < 1)
         return THROW_ERROR_EXCEPTION("You must provide one argument.");
