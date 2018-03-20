@@ -8,7 +8,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
+
+#if !defined(_MSC_VER)
 #include <sys/param.h>
+#endif
 
 #if defined(_MSC_VER)
 #include <stdlib.h>
@@ -162,11 +165,12 @@ static inline void memcpy_swap64(void *dst, const void *src, size_t n) {
   }
 }
 
-#if !defined(BYTE_ORDER) || !defined(LITTLE_ENDIAN) || !defined(BIG_ENDIAN)
-static_assert(false, "BYTE_ORDER is undefined. Perhaps, GNU extensions are not enabled");
-#endif
+// #if !defined(BYTE_ORDER) || !defined(LITTLE_ENDIAN) || !defined(BIG_ENDIAN)
+// static_assert(false, "BYTE_ORDER is undefined. Perhaps, GNU extensions are not enabled");
+// #endif
 
-#if BYTE_ORDER == LITTLE_ENDIAN
+// #if BYTE_ORDER == LITTLE_ENDIAN
+#if O32_HOST_ORDER == O32_LITTLE_ENDIAN
 #define SWAP32LE IDENT32
 #define SWAP32BE SWAP32
 #define swap32le ident32
@@ -185,7 +189,8 @@ static_assert(false, "BYTE_ORDER is undefined. Perhaps, GNU extensions are not e
 #define memcpy_swap64be memcpy_swap64
 #endif
 
-#if BYTE_ORDER == BIG_ENDIAN
+// #if BYTE_ORDER == BIG_ENDIAN
+#if O32_HOST_ORDER == O32_BIG_ENDIAN
 #define SWAP32BE IDENT32
 #define SWAP32LE SWAP32
 #define swap32be ident32

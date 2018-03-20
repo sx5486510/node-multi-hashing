@@ -1,0 +1,1 @@
+node-gyp configure --msvs_version=2015

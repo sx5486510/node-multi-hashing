@@ -10,6 +10,7 @@
 #include "crypto/c_skein.h"
 #include "crypto/int-util.h"
 #include "crypto/hash-ops.h"
+#include <malloc.h>
 
 #define MEMORY         (1 << 21) /* 2 MiB */
 #define ITER           (1 << 20)
