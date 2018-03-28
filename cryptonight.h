@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include <stddef.h>
 
 	typedef struct {
 		uint8_t hash_state[224]; // Need only 200, explicit align
