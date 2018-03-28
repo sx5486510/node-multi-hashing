@@ -4,17 +4,17 @@
             "target_name": "multihashing",
             "sources": [
                 "multihashing.cc",
+                "cryptonight_common.c",
                 "cryptonight.c",
-                "cryptonight_light.c",
-                "sha3/sph_keccak.c",
-                "crypto/oaes_lib.c",
-                "crypto/c_keccak.c",
-                "crypto/c_groestl.c",
                 "crypto/c_blake256.c",
+                "crypto/c_groestl.c",
                 "crypto/c_jh.c",
+                "crypto/c_keccak.c",
                 "crypto/c_skein.c",
                 "crypto/hash.c",
-                "crypto/aesb.c"
+                "crypto/oaes_lib.c",
+                "crypto/soft_aes.c",
+                "sha3/sph_keccak.c",
             ],
             "include_dirs": [
                 "crypto",

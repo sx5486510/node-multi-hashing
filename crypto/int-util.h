@@ -45,32 +45,6 @@ static inline uint64_t lo_dword(uint64_t val) {
   return val & 0xFFFFFFFF;
 }
 
-static inline uint64_t mul128(uint64_t multiplier, uint64_t multiplicand, uint64_t* product_hi) {
-  // multiplier   = ab = a * 2^32 + b
-  // multiplicand = cd = c * 2^32 + d
-  // ab * cd = a * c * 2^64 + (a * d + b * c) * 2^32 + b * d
-  uint64_t a = hi_dword(multiplier);
-  uint64_t b = lo_dword(multiplier);
-  uint64_t c = hi_dword(multiplicand);
-  uint64_t d = lo_dword(multiplicand);
-
-  uint64_t ac = a * c;
-  uint64_t ad = a * d;
-  uint64_t bc = b * c;
-  uint64_t bd = b * d;
-
-  uint64_t adbc = ad + bc;
-  uint64_t adbc_carry = adbc < ad ? 1 : 0;
-
-  // multiplier * multiplicand = product_hi * 2^64 + product_lo
-  uint64_t product_lo = bd + (adbc << 32);
-  uint64_t product_lo_carry = product_lo < bd ? 1 : 0;
-  *product_hi = ac + (adbc >> 32) + (adbc_carry << 32) + product_lo_carry;
-  assert(ac <= *product_hi);
-
-  return product_lo;
-}
-
 static inline uint64_t div_with_reminder(uint64_t dividend, uint32_t divisor, uint32_t* remainder) {
   dividend |= ((uint64_t)*remainder) << 32;
   *remainder = dividend % divisor;
@@ -165,12 +139,14 @@ static inline void memcpy_swap64(void *dst, const void *src, size_t n) {
   }
 }
 
-// #if !defined(BYTE_ORDER) || !defined(LITTLE_ENDIAN) || !defined(BIG_ENDIAN)
-// static_assert(false, "BYTE_ORDER is undefined. Perhaps, GNU extensions are not enabled");
-// #endif
+#if !defined(BYTE_ORDER) || !defined(LITTLE_ENDIAN) || !defined(BIG_ENDIAN)
+#define BYTE_ORDER  ('ABCD')
+#define LITTLE_ENDIAN 0x41424344UL 
+#define BIG_ENDIAN    0x44434241UL
+#define PDP_ENDIAN    0x42414443UL
+#endif
 
-// #if BYTE_ORDER == LITTLE_ENDIAN
-#if O32_HOST_ORDER == O32_LITTLE_ENDIAN
+#if BYTE_ORDER == LITTLE_ENDIAN
 #define SWAP32LE IDENT32
 #define SWAP32BE SWAP32
 #define swap32le ident32
@@ -189,8 +165,7 @@ static inline void memcpy_swap64(void *dst, const void *src, size_t n) {
 #define memcpy_swap64be memcpy_swap64
 #endif
 
-// #if BYTE_ORDER == BIG_ENDIAN
-#if O32_HOST_ORDER == O32_BIG_ENDIAN
+#if BYTE_ORDER == BIG_ENDIAN
 #define SWAP32BE IDENT32
 #define SWAP32LE SWAP32
 #define swap32be ident32
